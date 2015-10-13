@@ -4,7 +4,7 @@
   "description": "TodoMVC example using Redux, React, and Typescript ",
   "repository": {
     "type": "git",
-    "url": "git@github.com:jaysoo/todomvc-redux-react-typescript.git"
+    "url": "git@github.com:jtmueller/todomvc-redux-react-typescript.git"
   },
   "scripts": {
     "dev-server": "node webpack/dev-server.js",
