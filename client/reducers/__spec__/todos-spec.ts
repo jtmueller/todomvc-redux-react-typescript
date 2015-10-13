@@ -14,9 +14,12 @@ import {
   CLEAR_COMPLETED
 } from '../../constants/ActionTypes';
 
+type TodoList = Immutable.List<Immutable.Map<string, any>>;
+var TodoRecord = Immutable.Record({ text:'', completed: false, id: -1 });
+
 describe('todo reducer', () => {
   it('handles add', () => {
-    let state: Todo[] = [{ id: 0, text: '', completed: true }];
+    let state: TodoList = Immutable.List([new TodoRecord({ id: 0, text: '', completed: true })]);
     
     state = todos(state, {
       type: ADD_TODO,
@@ -29,7 +32,7 @@ describe('todo reducer', () => {
   });
   
   it('handles delete', () => {
-    let state: Todo[] = [{ id: 1, text: '', completed: false }];
+    let state: TodoList = Immutable.List([new TodoRecord({ id: 1, text: '', completed: false })]);
     
     state = todos(state, {
       type: DELETE_TODO,
@@ -40,7 +43,7 @@ describe('todo reducer', () => {
   });
   
   it('handles edit', () => {
-    let state: Todo[] = [{ id: 1, text: '', completed: false }];
+    let state: TodoList = Immutable.List([new TodoRecord({ id: 1, text: '', completed: false })]);
     
     state = todos(state, {
       type: EDIT_TODO,
@@ -54,9 +57,9 @@ describe('todo reducer', () => {
   
   it('handles complete all', () => {
     
-    let state: Todo[] = [
-      { id: 1, text: '', completed: false }
-    ];
+    let state: TodoList = Immutable.List([
+      new TodoRecord({ id: 1, text: '', completed: false })
+    ]);
     
     state = todos(state, {
       type: COMPLETE_TODO,
@@ -69,11 +72,11 @@ describe('todo reducer', () => {
   });
   
   it('handles complete all', () => {
-    let state: Todo[] = [
+    let state: TodoList = Immutable.List([
       { id: 1, text: '', completed: false },
       { id: 2, text: '', completed: true },
       { id: 3, text: '', completed: false }
-    ];
+    ].map(x => new TodoRecord(x)));
     
     state = todos(state, {
       type: COMPLETE_ALL,
@@ -99,10 +102,10 @@ describe('todo reducer', () => {
   });
   
   it('handles clear completed', () => {
-    let state: Todo[] = [
+    let state: TodoList = Immutable.List([
       { id: 1, text: '', completed: false },
       { id: 2, text: '', completed: true }
-    ];
+    ].map(x => new TodoRecord(x)));
     
     state = todos(state, {
       type: CLEAR_COMPLETED,

@@ -19,6 +19,7 @@
     "classnames": "^2.1.5",
     "express": "4.7.2",
     "extract-text-webpack-plugin": "0.8.0",
+    "immutable": "^3.7.5",
     "lodash": "^3.10.1",
     "react": "0.14.0",
     "react-redux": "^3.1.0",
