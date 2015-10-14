@@ -1,5 +1,4 @@
 /// <reference path='../../typings/redux-actions/redux-actions.d.ts'/>
-/// <reference path='../../typings/lodash/lodash.d.ts'/>
 
 import { createAction, Action } from 'redux-actions';
 

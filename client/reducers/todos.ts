@@ -1,4 +1,3 @@
-/// <reference path='../../typings/lodash/lodash.d.ts'/>
 /// <reference path='../../typings/redux-actions/redux-actions.d.ts'/>
 /// <reference path='../../typings/immutable/immutable-overrides.d.ts'/>
 
