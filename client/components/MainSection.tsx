@@ -15,8 +15,8 @@ import {
 
 const TODO_FILTERS = {
   [SHOW_ALL]: () => true,
-  [SHOW_ACTIVE]: todo => !todo.completed,
-  [SHOW_COMPLETED]: todo => todo.completed
+  [SHOW_ACTIVE]: (todo:Todo) => !todo.completed,
+  [SHOW_COMPLETED]: (todo:Todo) => todo.completed
 };
 
 interface MainSectionProps {
@@ -53,7 +53,7 @@ class MainSection extends React.Component<MainSectionProps, any> {
     }
   }
 
-  renderFooter(completedCount) {
+  renderFooter(completedCount: number) {
     const { todos } = this.props;
     const { filter } = this.state;
     const activeCount = todos.size - completedCount;

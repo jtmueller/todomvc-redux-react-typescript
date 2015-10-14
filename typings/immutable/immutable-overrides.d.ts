@@ -8,7 +8,7 @@ declare module Immutable {
 			set(key: string, value: any): IRecord<T>
 		}
 
-		interface Impl<T> {
+		interface Factory<T> {
 			new (): IRecord<T>;
 			new (values: T): IRecord<T>;
 
@@ -19,5 +19,5 @@ declare module Immutable {
 
 	export function Record<T>(
 		defaultValues: T, name?: string
-	): Record.Impl<T>;
+	): Record.Factory<T>;
 }
