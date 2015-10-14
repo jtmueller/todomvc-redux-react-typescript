@@ -1,10 +1,12 @@
 /// <reference path='../../typings/react/react.d.ts'/>
+/// <reference path='../../node_modules/immutable/dist/Immutable.d.ts'/>
 
 import * as React from 'react';
 
-import { Todo } from '../models/todos';
+import { Todo, TodoList } from '../models/todos';
 import TodoItem from './TodoItem';
 import Footer from './Footer';
+
 import {
   SHOW_ALL,
   SHOW_COMPLETED,
@@ -18,7 +20,7 @@ const TODO_FILTERS = {
 };
 
 interface MainSectionProps {
-  todos: Todo[];
+  todos: TodoList;
   actions: any;
 };
 
@@ -41,11 +43,11 @@ class MainSection extends React.Component<MainSectionProps, any> {
 
   renderToggleAll(completedCount) {
     const { todos, actions } = this.props;
-    if (todos.length > 0) {
+    if (todos.size > 0) {
       return (
         <input className="toggle-all"
                type="checkbox"
-               checked={completedCount === todos.length}
+               checked={completedCount === todos.size}
                onChange={() => actions.completeAll()} />
       );
     }
@@ -54,9 +56,9 @@ class MainSection extends React.Component<MainSectionProps, any> {
   renderFooter(completedCount) {
     const { todos } = this.props;
     const { filter } = this.state;
-    const activeCount = todos.length - completedCount;
+    const activeCount = todos.size - completedCount;
 
-    if (todos.length) {
+    if (todos.size) {
       return (
         <Footer completedCount={completedCount}
                 activeCount={activeCount}

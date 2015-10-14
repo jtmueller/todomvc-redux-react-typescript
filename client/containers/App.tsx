@@ -10,8 +10,8 @@ import Header from '../components/Header';
 import MainSection from '../components/MainSection';
 import * as TodoActions from '../actions/todos';
 
-// It would be nice to specify an AppProps interface for this component, but it
-// does not play nicely with the {() => <App/>} usage in main.
+// It would be nice to specify an AppProps interface for this component, but it 
+// does not play nicely with the {() => <App/>} usage in main (which is no longer needed).
 class App extends React.Component<any, any> {
   render() {
     const { todos, dispatch } = this.props;
