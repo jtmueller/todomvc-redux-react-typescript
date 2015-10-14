@@ -1,11 +1,9 @@
 /// <reference path='../../typings/redux-actions/redux-actions.d.ts'/>
 /// <reference path='../../typings/lodash/lodash.d.ts'/>
-/// <reference path='../../typings/immutable/immutable-overrides.d.ts'/>
 
-import Immutable = require('immutable');
 import { createAction, Action } from 'redux-actions';
 
-import { Todo } from '../models/todos';
+import { Todo, IRecord } from '../models/todos';
 import * as types from '../constants/ActionTypes';
 
 const addTodo = createAction<Todo>(
@@ -20,7 +18,7 @@ const deleteTodo = createAction<Todo>(
 
 const editTodo = createAction<Todo>(
   types.EDIT_TODO,
-  (todo: Immutable.Record.IRecord<Todo>, newText: string) => todo.set('text', newText)
+  (todo: IRecord<Todo>, newText: string) => todo.set('text', newText)
 );
 
 const completeTodo = createAction<Todo>(

@@ -2,7 +2,7 @@
 
 import { expect } from 'chai';
 
-import { Todo } from '../../models/todos';
+import { Todo, TodoList, IRecord, TodoRecord } from '../../models/todos';
 import todos from '../todos';
 import Immutable = require('immutable');
 
@@ -14,9 +14,6 @@ import {
   COMPLETE_ALL,
   CLEAR_COMPLETED
 } from '../../constants/ActionTypes';
-
-type TodoList = Immutable.List<Immutable.Record.IRecord<Todo>>;
-const TodoRecord = Immutable.Record({ text:'', completed: false, id: -1 });
 
 describe('todo reducer', () => {
   it('handles add', () => {
