@@ -2,7 +2,6 @@
 /// <reference path='../../typings/redux-actions/redux-actions.d.ts'/>
 /// <reference path='../../typings/immutable/immutable-overrides.d.ts'/>
 
-import { assign } from 'lodash';
 import { handleActions, Action } from 'redux-actions';
 import Immutable = require('immutable'); // for some reason import/from gives a "no default export" error
 
@@ -17,7 +16,7 @@ import {
 } from '../constants/ActionTypes';
 
 const initialState = Immutable.List([new TodoRecord({
-  text: 'Use Redux with TypeScript?',
+  text: 'Use Redux with TypeScript',
   completed: false,
   id: 0
 })]);
