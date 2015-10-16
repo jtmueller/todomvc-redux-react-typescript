@@ -1,8 +1,10 @@
 /// <reference path='../../typings/react/react.d.ts'/>
 /// <reference path='../../typings/classnames/classnames.d.ts'/>
+/// <reference path='../../typings/material-ui/material-ui.d.ts'/>
 
 import * as React from 'react';
 import * as classNames from 'classnames';
+import TextField = require('material-ui/lib/text-field');
 
 interface TodoTextInputProps {
   onSave: Function;
@@ -22,11 +24,9 @@ class TodoTextInput extends React.Component<TodoTextInputProps, any> {
 
   handleSubmit(e) {
     const text = e.target.value.trim();
-    if (e.which === 13) {
-      this.props.onSave(text);
-      if (this.props.newTodo) {
-        this.setState({ text: '' });
-      }
+    this.props.onSave(text);
+    if (this.props.newTodo) {
+      this.setState({ text: '' });
     }
   }
 
@@ -42,18 +42,13 @@ class TodoTextInput extends React.Component<TodoTextInputProps, any> {
 
   render() {
     return (
-      <input className={
-        classNames({
-          edit: this.props.editing,
-          'new-todo': this.props.newTodo
-        })}
+      <TextField 
         type="text"
-        placeholder={this.props.placeholder}
-        autoFocus={true}
+        floatingLabelText={this.props.placeholder}
         value={this.state.text}
         onBlur={this.handleBlur.bind(this)}
         onChange={this.handleChange.bind(this)}
-        onKeyDown={this.handleSubmit.bind(this)} />
+        onEnterKeyDown={this.handleSubmit.bind(this)} />
     );
   }
 }

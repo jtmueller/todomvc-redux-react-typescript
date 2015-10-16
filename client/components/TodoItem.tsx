@@ -1,8 +1,13 @@
 /// <reference path='../../typings/react/react.d.ts'/>
 /// <reference path='../../typings/classnames/classnames.d.ts'/>
+/// <reference path='../../typings/material-ui/material-ui.d.ts'/>
 
 import * as React from 'react';
 import * as classNames from 'classnames';
+import TableRow = require('material-ui/lib/table/table-row');
+import TableRowColumn = require('material-ui/lib/table/table-row-column');
+import Colors = require('material-ui/lib/styles/colors');
+import FontIcon = require('material-ui/lib/font-icon');
 
 import { Todo } from '../models/todos';
 import TodoTextInput from './TodoTextInput';
@@ -42,35 +47,36 @@ class TodoItem extends React.Component<TodoItemProps, any> {
     let element;
     if (this.state.editing) {
       element = (
-        <TodoTextInput text={todo.text}
-                       editing={this.state.editing}
-                       onSave={(text) => this.handleSave(todo, text)}/>
+        <TableRow selected={todo.completed} key={todo.id} rowNumber={todo.id}>
+          <TableRowColumn>
+            <TodoTextInput text={todo.text}
+                           editing={this.state.editing}
+                           onSave={(text) => this.handleSave(todo, text)}/>
+          </TableRowColumn>
+        </TableRow>
       );
     } else {
       element = (
-        <div className="view">
-          <input className="toggle"
-                 type="checkbox"
-                 checked={todo.completed}
-                 onChange={() => completeTodo(todo)} />
-          <label onDoubleClick={this.handleDoubleClick.bind(this)}>
-            {todo.text}
-          </label>
-          <button className="destroy"
-                  onClick={() => deleteTodo(todo)} />
-        </div>
+        <TableRow selected={todo.completed} key={todo.id} rowNumber={todo.id}>
+          <TableRowColumn>
+            <label onDoubleClick={this.handleDoubleClick.bind(this)}>
+              {todo.text}
+            </label>
+          </TableRowColumn>
+          <TableRowColumn>
+            <FontIcon className="material-icons" color={Colors.red700}>clear</FontIcon>
+          </TableRowColumn>
+        </TableRow>
       );
     }
 
-    return (
-      <li className={classNames({
-        completed: todo.completed,
-        editing: this.state.editing
-      })}>
-        {element}
-      </li>
-    );
+    return element;
   }
 }
+
+//          <input className="toggle"
+//                 type="checkbox"
+//                 checked={todo.completed}
+//                 onChange={() => completeTodo(todo)} />
 
 export default TodoItem;

@@ -1,10 +1,15 @@
 /// <reference path='../../typings/react/react.d.ts'/>
 /// <reference path='../../typings/redux/redux.d.ts'/>
 /// <reference path='../../typings/react-redux/react-redux.d.ts'/>
+/// <reference path='../../typings/material-ui/material-ui.d.ts'/>
+
+// NOTE: Currently material-ui must be built (npm -i from node_modules) from the trunk
+// to get React 0.14 support.
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as React from 'react';
+import Paper = require('material-ui/lib/paper');
 
 import Header from '../components/Header';
 import MainSection from '../components/MainSection';
@@ -18,12 +23,12 @@ class App extends React.Component<any, any> {
     const actions = bindActionCreators(TodoActions, dispatch);
 
     return (
-      <div className="todoapp">
-        <Header addTodo={actions.addTodo} />
+      <Paper zDepth={1} style={{margin:50, padding:30}}>
+        <Header />
         <MainSection
           todos={todos}
           actions={actions}/>
-      </div>
+      </Paper>
     );
   }
 }

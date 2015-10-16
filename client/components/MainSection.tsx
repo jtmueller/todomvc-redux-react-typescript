@@ -1,11 +1,21 @@
 /// <reference path='../../typings/react/react.d.ts'/>
 /// <reference path='../../node_modules/immutable/dist/Immutable.d.ts'/>
+/// <reference path='../../typings/material-ui/material-ui.d.ts'/>
 
 import * as React from 'react';
+import CardText = require('material-ui/lib/card/card-text');
+import Table = require('material-ui/lib/table/table');
+import TableHeader = require('material-ui/lib/table/table-header');
+import TableHeaderColumn = require('material-ui/lib/table/table-header-column');
+import TableRow = require('material-ui/lib/table/table-row');
+import TableRowColumn = require('material-ui/lib/table/table-row-column');
+import TableFooter = require('material-ui/lib/table/table-footer');
+import TableBody = require('material-ui/lib/table/table-body');
 
 import { Todo, TodoList } from '../models/todos';
 import TodoItem from './TodoItem';
 import Footer from './Footer';
+import TodoTextInput from './TodoTextInput';
 
 import {
   SHOW_ALL,
@@ -68,6 +78,12 @@ class MainSection extends React.Component<MainSectionProps, any> {
       );
     }
   }
+  
+  handleSave(text) {
+    if (text.length !== 0) {
+      this.props.actions.addTodo(text);
+    }
+  }
 
   render() {
     const { todos, actions } = this.props;
@@ -80,18 +96,31 @@ class MainSection extends React.Component<MainSectionProps, any> {
     );
 
     return (
-      <section className="main">
-        {this.renderToggleAll(completedCount)}
-        <ul className="todo-list">
+      <div>
+                    <TodoTextInput
+                newTodo
+                onSave={this.handleSave.bind(this)}
+                placeholder="What needs to be done?" />
+      <Table
+        fixedHeader={true}
+        multiSelectable={true}
+        onRowSelection={selected => console.log(selected)}>
+        <TableHeader enableSelectAll={todos.size > 0}>
+          <TableRow>
+            <TableHeaderColumn/>
+            <TableHeaderColumn/>
+          </TableRow>
+        </TableHeader>
+        <TableBody deselectOnClickaway={false} multiSelectable={true} displayRowCheckbox={true}>
           {filteredTodos.map(todo =>
             <TodoItem
               key={todo.id}
               todo={todo}
               { ...actions }/>
           )}
-        </ul>
-        {this.renderFooter(completedCount)}
-      </section>
+        </TableBody>
+      </Table>
+      </div>
     );
   }
 }

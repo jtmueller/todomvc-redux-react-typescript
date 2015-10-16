@@ -1,29 +1,27 @@
 /// <reference path='../../typings/react/react.d.ts'/>
+/// <reference path='../../typings/material-ui/material-ui.d.ts'/>
 
 import * as React from 'react';
+import Card = require('material-ui/lib/card/card');
+import CardHeader = require('material-ui/lib/card/card-header');
+import CardActions = require('material-ui/lib/card/card-actions');
+import Avatar = require('material-ui/lib/avatar');
+import FontIcon = require('material-ui/lib/font-icon');
+import Colors = require('material-ui/lib/styles/colors');
 
-import TodoTextInput from './TodoTextInput';
-
-interface HeaderProps {
-  addTodo: Function;
-};
-
-class Header extends React.Component<HeaderProps, any> {
-  handleSave(text) {
-    if (text.length !== 0) {
-      this.props.addTodo(text);
-    }
-  }
-
+class Header extends React.Component<any, any> {
   render() {
     return (
-      <header className="header">
-          <h1>todos</h1>
-          <TodoTextInput
-            newTodo
-            onSave={this.handleSave.bind(this)}
-            placeholder="What needs to be done?" />
-      </header>
+      <Card>
+        <CardHeader
+          title="Todos"
+          subtitle="Todonts strictly prohibited"
+          avatar={
+            <Avatar>
+              <FontIcon className="material-icons" color={Colors.teal800}>assignment_turned_in</FontIcon>
+            </Avatar>
+          } />
+      </Card>
     );
   }
 }
