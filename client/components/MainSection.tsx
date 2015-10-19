@@ -9,7 +9,6 @@ import TableHeader = require('material-ui/lib/table/table-header');
 import TableHeaderColumn = require('material-ui/lib/table/table-header-column');
 import TableRow = require('material-ui/lib/table/table-row');
 import TableRowColumn = require('material-ui/lib/table/table-row-column');
-import TableFooter = require('material-ui/lib/table/table-footer');
 import TableBody = require('material-ui/lib/table/table-body');
 
 import { Todo, TodoList } from '../models/todos';
@@ -51,18 +50,6 @@ class MainSection extends React.Component<MainSectionProps, any> {
     this.setState({ filter });
   }
 
-  renderToggleAll(completedCount) {
-    const { todos, actions } = this.props;
-    if (todos.size > 0) {
-      return (
-        <input className="toggle-all"
-               type="checkbox"
-               checked={completedCount === todos.size}
-               onChange={() => actions.completeAll()} />
-      );
-    }
-  }
-
   renderFooter(completedCount: number) {
     const { todos } = this.props;
     const { filter } = this.state;
@@ -96,22 +83,25 @@ class MainSection extends React.Component<MainSectionProps, any> {
     );
 
     return (
-      <div>
-                    <TodoTextInput
+      <Table selectable={true} multiSelectable={true} fixedHeader={true} fixedFooter={true}>
+        <TableHeader
+          enableSelectAll={todos.size > 0} 
+          selectAllSelected={todos.size > 0 && todos.size === completedCount}
+          onSelectAll={() => {console.log('selectall'); actions.completeAll()}}>
+          <TableRow>
+            <TableHeaderColumn>
+              <TodoTextInput
                 newTodo
                 onSave={this.handleSave.bind(this)}
                 placeholder="What needs to be done?" />
-      <Table
-        fixedHeader={true}
-        multiSelectable={true}
-        onRowSelection={selected => console.log(selected)}>
-        <TableHeader enableSelectAll={todos.size > 0}>
-          <TableRow>
-            <TableHeaderColumn/>
+            </TableHeaderColumn>
             <TableHeaderColumn/>
           </TableRow>
         </TableHeader>
-        <TableBody deselectOnClickaway={false} multiSelectable={true} displayRowCheckbox={true}>
+        <TableBody 
+          onRowSelection={selected => console.log(selected)}
+          deselectOnClickaway={false} selectable={true} 
+          multiSelectable={true} displayRowCheckbox={true}>
           {filteredTodos.map(todo =>
             <TodoItem
               key={todo.id}
@@ -119,8 +109,8 @@ class MainSection extends React.Component<MainSectionProps, any> {
               { ...actions }/>
           )}
         </TableBody>
+        {this.renderFooter(completedCount)}
       </Table>
-      </div>
     );
   }
 }

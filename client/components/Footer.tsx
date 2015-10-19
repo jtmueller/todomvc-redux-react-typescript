@@ -1,7 +1,14 @@
 /// <reference path='../../typings/react/react.d.ts'/>
 /// <reference path='../../typings/classnames/classnames.d.ts'/>
+/// <reference path='../../typings/material-ui/material-ui.d.ts'/>
+
 import * as React from 'react';
 import * as classNames from 'classnames';
+
+import TableFooter = require('material-ui/lib/table/table-footer');
+import TableRow = require('material-ui/lib/table/table-row');
+import TableRowColumn = require('material-ui/lib/table/table-row-column');
+import FlatButton = require('material-ui/lib/flat-button');
 
 import {
   SHOW_ALL,
@@ -30,9 +37,9 @@ class Footer extends React.Component<FooterProps, any> {
     const itemWord = activeCount === 1 ? 'item' : 'items';
 
     return (
-      <span className="todo-count">
+      <TableRowColumn>
         <strong>{activeCount || 'No'}</strong> {itemWord} left
-      </span>
+      </TableRowColumn>
     );
   }
 
@@ -41,11 +48,11 @@ class Footer extends React.Component<FooterProps, any> {
     const { filter: selectedFilter, onShow } = this.props;
 
     return (
-      <a className={classNames({ selected: filter === selectedFilter })}
-         style={{ cursor: 'pointer' }}
-         onClick={() => onShow(filter)}>
+      <FlatButton
+        primary={filter === selectedFilter}
+        onClick={() => onShow(filter)}>
         {title}
-      </a>
+      </FlatButton>
     );
   }
 
@@ -53,28 +60,29 @@ class Footer extends React.Component<FooterProps, any> {
     const { completedCount, onClearCompleted } = this.props;
     if (completedCount > 0) {
       return (
-        <button className="clear-completed"
-                onClick={() => onClearCompleted()} >
-          Clear completed
-        </button>
+        <TableRowColumn>
+          <FlatButton secondary={true}
+                  onClick={() => onClearCompleted()}>
+            Clear completed
+          </FlatButton>
+        </TableRowColumn>
       );
     }
   }
 
   render() {
     return (
-      <div/>
-      // <footer className="footer">
-      //   {this.renderTodoCount()}
-      //   <ul className="filters">
-      //     {[SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED].map(filter =>
-      //       <li key={filter}>
-      //         {this.renderFilterLink(filter)}
-      //       </li>
-      //     )}
-      //   </ul>
-      //   {this.renderClearButton()}
-      // </footer>
+      <TableFooter adjustForCheckbox={true}>
+        <TableRow>
+          {this.renderTodoCount()}
+          {[SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED].map(filter =>
+            <TableRowColumn key={filter}>
+              {this.renderFilterLink(filter)}
+            </TableRowColumn>
+          )}
+          {this.renderClearButton()}
+        </TableRow>
+      </TableFooter>
     );
   }
 }

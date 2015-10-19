@@ -32,13 +32,24 @@ class TodoItem extends React.Component<TodoItemProps, any> {
     this.setState({ editing: true });
   }
 
-  handleSave(todo, text) {
+  handleSave(todo:Todo, text) {
     if (text.length === 0) {
       this.props.deleteTodo(todo);
     } else {
       this.props.editTodo(todo, text);
     }
     this.setState({ editing: false });
+  }
+  
+  style = {
+    removeBtn: {
+      cursor: 'pointer',
+      textAlign: 'right'
+    },
+    completed: {
+      textDecoration: 'line-through',
+      color: 'silver'
+    }
   }
 
   render() {
@@ -51,20 +62,26 @@ class TodoItem extends React.Component<TodoItemProps, any> {
           <TableRowColumn>
             <TodoTextInput text={todo.text}
                            editing={this.state.editing}
-                           onSave={(text) => this.handleSave(todo, text)}/>
+                           onSave={text => this.handleSave(todo, text)}/>
           </TableRowColumn>
+          <TableRowColumn/>
         </TableRow>
       );
     } else {
       element = (
         <TableRow selected={todo.completed} key={todo.id} rowNumber={todo.id}>
           <TableRowColumn>
-            <label onDoubleClick={this.handleDoubleClick.bind(this)}>
+            <label 
+              style={todo.completed ? this.style.completed : null} 
+              onDoubleClick={this.handleDoubleClick.bind(this)}>
               {todo.text}
             </label>
           </TableRowColumn>
           <TableRowColumn>
-            <FontIcon className="material-icons" color={Colors.red700}>clear</FontIcon>
+            <div onClick={() => deleteTodo(todo)} style={this.style.removeBtn}>
+              <FontIcon className="material-icons" 
+                color={Colors.red700}>clear</FontIcon>
+            </div>
           </TableRowColumn>
         </TableRow>
       );

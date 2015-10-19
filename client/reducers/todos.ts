@@ -16,7 +16,7 @@ import {
 
 const initialState = Immutable.List([new TodoRecord({
   text: 'Use Redux with TypeScript',
-  completed: false,
+  completed: true,
   id: 0
 })]);
 

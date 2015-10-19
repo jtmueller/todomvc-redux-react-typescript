@@ -23,7 +23,7 @@ class App extends React.Component<any, any> {
     const actions = bindActionCreators(TodoActions, dispatch);
 
     return (
-      <Paper zDepth={1} style={{margin:50, padding:30}}>
+      <Paper zDepth={1} style={{margin:50, padding:20}}>
         <Header />
         <MainSection
           todos={todos}

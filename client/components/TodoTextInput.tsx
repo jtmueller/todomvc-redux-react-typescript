@@ -44,7 +44,7 @@ class TodoTextInput extends React.Component<TodoTextInputProps, any> {
     return (
       <TextField 
         type="text"
-        floatingLabelText={this.props.placeholder}
+        hintText={this.props.placeholder}
         value={this.state.text}
         onBlur={this.handleBlur.bind(this)}
         onChange={this.handleChange.bind(this)}

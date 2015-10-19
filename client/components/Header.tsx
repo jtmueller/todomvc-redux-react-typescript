@@ -12,14 +12,14 @@ import Colors = require('material-ui/lib/styles/colors');
 class Header extends React.Component<any, any> {
   render() {
     return (
-      <Card>
+      <Card style={{marginBottom:20}}>
         <CardHeader
           title="Todos"
           subtitle="Todonts strictly prohibited"
           avatar={
-            <Avatar>
-              <FontIcon className="material-icons" color={Colors.teal800}>assignment_turned_in</FontIcon>
-            </Avatar>
+            <Avatar
+              icon={<FontIcon className="material-icons">assignment_turned_in</FontIcon>}
+              color={Colors.teal800}/>
           } />
       </Card>
     );
