@@ -71,11 +71,11 @@ class TodoItem extends React.Component<TodoItemProps, any> {
       element = (
         <TableRow selected={todo.completed} key={todo.id} rowNumber={todo.id}>
           <TableRowColumn>
-            <label 
+            <span 
               style={todo.completed ? this.style.completed : null} 
               onDoubleClick={this.handleDoubleClick.bind(this)}>
               {todo.text}
-            </label>
+            </span>
           </TableRowColumn>
           <TableRowColumn>
             <div onClick={() => deleteTodo(todo)} style={this.style.removeBtn}>
