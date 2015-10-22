@@ -22,9 +22,13 @@ const TODO_FILTERS = {
 interface MainSectionProps {
   todos: TodoList;
   actions: any;
-};
+}
 
-class MainSection extends React.Component<MainSectionProps, any> {
+interface MainSectionState {
+  filter: string;
+}
+
+class MainSection extends React.Component<MainSectionProps, MainSectionState> {
   constructor(props, context) {
     super(props, context);
     this.state = { filter: SHOW_ALL };

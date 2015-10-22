@@ -5,14 +5,19 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as React from 'react';
+import * as Immutable from 'immutable';
 
 import Header from '../components/Header';
 import MainSection from '../components/MainSection';
 import * as TodoActions from '../actions/todos';
+import { TodoList } from '../models/todos';
 
-// It would be nice to specify an AppProps interface for this component, but it 
-// does not play nicely with the {() => <App/>} usage in main (which is no longer needed).
-class App extends React.Component<any, any> {
+interface AppProps {
+  todos: TodoList;
+  dispatch: Redux.Dispatch;
+}
+
+class App extends React.Component<AppProps, any> {
   render() {
     const { todos, dispatch } = this.props;
     const actions = bindActionCreators(TodoActions, dispatch);
