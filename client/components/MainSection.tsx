@@ -3,13 +3,15 @@
 /// <reference path='../../typings/material-ui/material-ui.d.ts'/>
 
 import * as React from 'react';
-import CardText = require('material-ui/lib/card/card-text');
-import Table = require('material-ui/lib/table/table');
-import TableHeader = require('material-ui/lib/table/table-header');
-import TableHeaderColumn = require('material-ui/lib/table/table-header-column');
-import TableRow = require('material-ui/lib/table/table-row');
-import TableRowColumn = require('material-ui/lib/table/table-row-column');
-import TableBody = require('material-ui/lib/table/table-body');
+import {
+  CardText,
+  Table,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn,
+  TableBody
+} from 'material-ui';
 
 import { Todo, TodoList } from '../models/todos';
 import TodoItem from './TodoItem';

@@ -5,10 +5,12 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
 
-import TableFooter = require('material-ui/lib/table/table-footer');
-import TableRow = require('material-ui/lib/table/table-row');
-import TableRowColumn = require('material-ui/lib/table/table-row-column');
-import FlatButton = require('material-ui/lib/flat-button');
+import {
+  TableFooter,
+  TableRow,
+  TableRowColumn,
+  FlatButton
+} from 'material-ui';
 
 import {
   SHOW_ALL,
@@ -21,7 +23,6 @@ const FILTER_TITLES = {
   [SHOW_ACTIVE]: 'Active',
   [SHOW_COMPLETED]: 'Completed'
 };
-
 
 interface FooterProps {
   completedCount: number;

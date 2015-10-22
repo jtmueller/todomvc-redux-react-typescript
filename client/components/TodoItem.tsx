@@ -4,10 +4,12 @@
 
 import * as React from 'react';
 import * as classNames from 'classnames';
-import TableRow = require('material-ui/lib/table/table-row');
-import TableRowColumn = require('material-ui/lib/table/table-row-column');
-import Colors = require('material-ui/lib/styles/colors');
-import FontIcon = require('material-ui/lib/font-icon');
+import {
+  TableRow,
+  TableRowColumn,
+  FontIcon,
+  Styles
+} from 'material-ui';
 
 import { Todo } from '../models/todos';
 import TodoTextInput from './TodoTextInput';
@@ -80,7 +82,7 @@ class TodoItem extends React.Component<TodoItemProps, any> {
           <TableRowColumn>
             <div onClick={() => deleteTodo(todo)} style={this.style.removeBtn}>
               <FontIcon className="material-icons" 
-                color={Colors.red700}>clear</FontIcon>
+                color={Styles.Colors.red700}>clear</FontIcon>
             </div>
           </TableRowColumn>
         </TableRow>

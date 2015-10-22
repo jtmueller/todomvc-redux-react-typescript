@@ -2,7 +2,7 @@
 /// <reference path='../../typings/immutable/immutable-overrides.d.ts'/>
 
 import { handleActions, Action } from 'redux-actions';
-import Immutable = require('immutable'); // for some reason import/from gives a "no default export" error
+import * as Immutable from 'immutable';
 
 import { Todo, TodoList, TodoRecord } from '../models/todos';
 import {

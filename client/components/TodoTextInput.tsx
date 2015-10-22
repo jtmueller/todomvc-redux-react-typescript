@@ -4,7 +4,7 @@
 
 import * as React from 'react';
 import * as classNames from 'classnames';
-import TextField = require('material-ui/lib/text-field');
+import { TextField } from 'material-ui';
 
 interface TodoTextInputProps {
   onSave: Function;

@@ -18,8 +18,8 @@ import {
 } from 'react-redux';
 import { Action } from 'redux-actions';
 
-import App from './containers/App.tsx';
-import { rootReducer } from './reducers/rootReducer.ts';
+import App from './containers/App';
+import { rootReducer } from './reducers/rootReducer';
 
 const initialState = {
 };

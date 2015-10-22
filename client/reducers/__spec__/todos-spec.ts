@@ -4,7 +4,7 @@ import { expect } from 'chai';
 
 import { Todo, TodoList, IRecord, TodoRecord } from '../../models/todos';
 import todos from '../todos';
-import Immutable = require('immutable');
+import * as Immutable from 'immutable';
 
 import {
   ADD_TODO,
