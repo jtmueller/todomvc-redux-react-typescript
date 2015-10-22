@@ -12,6 +12,11 @@ import {
 } from 'material-ui';
 
 class Header extends React.Component<any, any> {
+  
+  shouldComponentUpdate(nextProps, nextState) {
+    return false;
+  }
+  
   render() {
     return (
       <Card style={{marginBottom:20}}>

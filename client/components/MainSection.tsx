@@ -56,8 +56,8 @@ class MainSection extends React.Component<MainSectionProps, any> {
     const { todos } = this.props;
     const { filter } = this.state;
     const activeCount = todos.size - completedCount;
-
-    if (todos.size) {
+    
+    if (todos.size > 0) {
       return (
         <Footer completedCount={completedCount}
                 activeCount={activeCount}
@@ -72,6 +72,11 @@ class MainSection extends React.Component<MainSectionProps, any> {
     if (text.length !== 0) {
       this.props.actions.addTodo(text);
     }
+  }
+  
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.props.todos !== nextProps.todos 
+      || this.state.filter !== nextState.filter;
   }
 
   render() {

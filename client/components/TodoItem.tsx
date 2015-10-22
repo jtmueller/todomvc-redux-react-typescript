@@ -53,6 +53,11 @@ class TodoItem extends React.Component<TodoItemProps, any> {
       color: 'silver'
     }
   }
+  
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.props.todo !== nextProps.todo 
+      || this.state.editing !== nextState.editing;
+  }
 
   render() {
     const {todo, completeTodo, deleteTodo} = this.props;
