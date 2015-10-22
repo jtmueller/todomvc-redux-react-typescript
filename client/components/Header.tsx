@@ -14,6 +14,10 @@ class Header extends React.Component<HeaderProps, any> {
       this.props.addTodo(text);
     }
   }
+  
+  shouldComponentUpdate(nextProps, nextState) {
+    return false;
+  }
 
   render() {
     return (

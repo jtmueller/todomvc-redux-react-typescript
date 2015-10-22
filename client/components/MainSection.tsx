@@ -68,6 +68,11 @@ class MainSection extends React.Component<MainSectionProps, any> {
       );
     }
   }
+  
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.props.todos !== nextProps.todos 
+      || this.state.filter !== nextState.filter;
+  }
 
   render() {
     const { todos, actions } = this.props;

@@ -60,6 +60,12 @@ class Footer extends React.Component<FooterProps, any> {
       );
     }
   }
+  
+  shouldComponentUpdate(nextProps, nextState) {  
+    return this.props.activeCount !== nextProps.activeCount  
+      || this.props.completedCount !== nextProps.completedCount  
+      || this.props.filter !== nextProps.filter;  
+  }  
 
   render() {
     return (
