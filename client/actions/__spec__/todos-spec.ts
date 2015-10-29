@@ -1,4 +1,4 @@
-/// <reference path='../../../test.d.ts'/>
+/// <reference path="../../../typings/tsd.d.ts" />
 
 import { expect } from 'chai';
 
