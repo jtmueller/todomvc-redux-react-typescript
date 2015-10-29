@@ -1,4 +1,5 @@
-/// <reference path='../../typings/immutable/immutable-overrides.d.ts'/>
+/// <reference path="../../typings/tsd.d.ts" />
+
 import * as Immutable from 'immutable';
 
 export interface Todo {

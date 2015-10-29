@@ -1,6 +1,4 @@
-/// <reference path='../../typings/react/react.d.ts'/>
-/// <reference path='../../typings/redux/redux.d.ts'/>
-/// <reference path='../../typings/react-redux/react-redux.d.ts'/>
+/// <reference path="../../typings/tsd.d.ts" />
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -13,8 +11,8 @@ import * as TodoActions from '../actions/todos';
 import { TodoList } from '../models/todos';
 
 interface AppProps {
-  todos: TodoList;
-  dispatch: Redux.Dispatch;
+  todos?: TodoList;
+  dispatch?: Redux.Dispatch;
 }
 
 class App extends React.Component<AppProps, any> {

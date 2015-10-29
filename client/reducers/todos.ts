@@ -1,5 +1,4 @@
-/// <reference path='../../typings/redux-actions/redux-actions.d.ts'/>
-/// <reference path='../../typings/immutable/immutable-overrides.d.ts'/>
+/// <reference path="../../typings/tsd.d.ts" />
 
 import { handleActions, Action } from 'redux-actions';
 import * as Immutable from 'immutable';
